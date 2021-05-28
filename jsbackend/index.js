@@ -1,22 +1,21 @@
-const express = require("express");
+import express from "express";
+import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
+
 const app = express();
 const port = 3000;
 
-app.get("/", (req, res) => {
-  const {
-    headers: { cookie },
-    params,
-    query,
-  } = req;
-  console.log({ cookie, params, query });
-  res.setHeader("Set-Cookie", "trackerId=tosi_salainen_koodi");
-  res.send("Hello World!");
-});
+const VERY_SECRET_KEY = "akjngfwoeinoi2n3n2rlk3nlknslf";
+app.use(cookieParser(VERY_SECRET_KEY));
+app.use(bodyParser.json());
 
-app.get("/Fruits", (req, res) => {
-  const fruits = [{ type: "apple", name: "Golden" }];
-  res.json(fruits);
-});
+import AuhtController from "./AuthController.js";
+import SampleController from "./SampleController.js";
+import FruitsController from "./fruits/FruitsController.js";
+
+AuhtController(app);
+SampleController(app);
+FruitsController(app);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
