@@ -10,7 +10,7 @@ const VERY_SECRET_KEY = "akjngfwoeinoi2n3n2rlk3nlknslf";
 app.use(cookieParser(VERY_SECRET_KEY));
 app.use(bodyParser.json());
 
-await mongoose.connect(
+/*await mongoose.connect(
   "mongodb://root:example@localhost/code_academy?authSource=admin",
   {
     useNewUrlParser: true,
@@ -18,17 +18,19 @@ await mongoose.connect(
     useFindAndModify: false,
     useCreateIndex: true,
   }
-);
+);*/
 
 import AuhtController from "./AuthController.js";
 import GraphQlController from "./GraphQlController.js";
 import SampleController from "./SampleController.js";
 import FruitsController from "./fruits/FruitsController.js";
+import CarsController from "./cars/CarsController.js";
 
 AuhtController(app);
 GraphQlController(app);
 SampleController(app);
 FruitsController(app);
+CarsController(app);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
