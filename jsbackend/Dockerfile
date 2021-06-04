@@ -1,11 +1,10 @@
-FROM node:14.16.1-alpine
+FROM node:14.15.4-alpine
 
 WORKDIR /usr/src/app
 
 COPY package.json package-lock.json /usr/src/app/
-
 RUN npm install
 
-COPY . /usr/src/app
+COPY . /usr/src/app/
 
-CMD ["node", "index.js"]
+CMD [ "node", "index.js" ]

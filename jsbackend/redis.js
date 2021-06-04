@@ -1,7 +1,8 @@
 import redis from "redis";
 import { promisify } from "util";
 
-const {REDIS_HOST} = process.env;
+const { REDIS_HOST } = process.env;
+
 const client = redis.createClient(`redis://${REDIS_HOST}`);
 
 client.on("error", console.error);
