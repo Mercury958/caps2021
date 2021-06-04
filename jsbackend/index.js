@@ -10,15 +10,17 @@ const VERY_SECRET_KEY = "akjngfwoeinoi2n3n2rlk3nlknslf";
 app.use(cookieParser(VERY_SECRET_KEY));
 app.use(bodyParser.json());
 
-/*await mongoose.connect(
-  "mongodb://root:example@localhost/code_academy?authSource=admin",
+const {MONGO_HOST = "localhost", MONGO_USER = "root", MONGO_PASSWORD = "example", MONGO_DB = "code_academy"}
+
+await mongoose.connect(
+  `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOST}/${MONGO_DB}?authSource=admin`,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
     useCreateIndex: true,
   }
-);*/
+);
 
 import AuhtController from "./AuthController.js";
 import GraphQlController from "./GraphQlController.js";
